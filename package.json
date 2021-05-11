@@ -1,0 +1,35 @@
+{
+  "name": "web-2-projeto-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:guilhermemiua/web-2-projeto-2.git",
+  "author": "guilhermemiua <guilhermemiua@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "NODE_ENV=test nodemon src/server",
+    "migration:make": "NODE_ENV=test knex --knexfile src/database/knexfile.js migrate:make",
+    "migration:latest": "NODE_ENV=test knex --knexfile src/database/knexfile.js migrate:latest",
+    "migration:rollback": "NODE_ENV=test knex --knexfile src/database/knexfile.js migrate:rollback",
+    "migration:run": "NODE_ENV=test knex --knexfile src/database/knexfile.js migrate:up",
+    "seed:make": "NODE_ENV=test knex --knexfile src/database/knexfile.js seed:make",
+    "seed:run": "NODE_ENV=test knex --knexfile src/database/knexfile.js seed:run"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.1",
+    "express": "^4.17.1",
+    "knex": "^0.95.4",
+    "pg": "^8.6.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1"
+  }
+}

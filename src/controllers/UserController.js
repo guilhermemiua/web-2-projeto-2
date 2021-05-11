@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const connection = require('../database/connection');
 
 class UserController {
@@ -65,7 +66,9 @@ class UserController {
           .send({ message: 'E-mail or Password incorrect.' });
       }
 
-      return response.status(201).send();
+      const token = await jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+
+      return response.status(201).send({ token });
     } catch (error) {
       return response.status(500).send({ message: 'Internal server error' });
     }

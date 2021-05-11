@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 
-const routes = require('../routes');
+const authenticatedRoutes = require('../routes/authenticated');
+const unauthenticatedRoutes = require('../routes/unauthenticated');
+const authMiddleware = require('../middlewares/auth');
 
 class App {
   constructor() {
@@ -16,7 +18,9 @@ class App {
   }
 
   routes() {
-    this.express.use(routes);
+    this.express.use(unauthenticatedRoutes);
+    this.express.use(authMiddleware);
+    this.express.use(authenticatedRoutes);
   }
 }
 

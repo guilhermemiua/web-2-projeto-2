@@ -13,7 +13,11 @@ class App {
   }
 
   middlewares() {
-    this.express.use(express.json());
+    this.express.use(
+      express.json({
+        limit: '10mb',
+      })
+    );
     this.express.use(cors());
   }
 

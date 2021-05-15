@@ -4,7 +4,7 @@ services:
   node:
     image: node:alpine
     ports:
-      - "3000:3000"
+      - "3333:3000"
     volumes:
       - .:/app
     working_dir: /app

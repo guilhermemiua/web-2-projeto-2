@@ -44,7 +44,7 @@ class UserController {
       const { email, password } = request.body;
 
       const user = await connection
-        .select(['id', 'password'])
+        .select(['id', 'name', 'email', 'role', 'password'])
         .where('email', email)
         .from('users')
         .first();
@@ -68,7 +68,9 @@ class UserController {
 
       const token = await jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
 
-      return response.status(201).send({ token });
+      delete user.password;
+
+      return response.status(201).send({ token, user });
     } catch (error) {
       return response.status(500).send({ message: 'Internal server error' });
     }

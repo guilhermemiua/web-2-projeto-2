@@ -21,7 +21,7 @@ class PokemonController {
 
       const pokemons = await query.from('pokemons');
 
-      return response.status(201).send(pokemons);
+      return response.status(200).send(pokemons);
     } catch (error) {
       return response.status(500).send({ message: 'Internal server error' });
     }
@@ -65,7 +65,7 @@ class PokemonController {
         .first();
 
       if (!pokemon) {
-        return response.status(404).send({ message: 'Pokemon not found.' });
+        return response.status(404).send({ message: 'Pokemon not found' });
       }
 
       if (file) {
@@ -91,7 +91,7 @@ class PokemonController {
           .where('id', id);
       }
 
-      return response.status(201).send({ message: 'Success' });
+      return response.status(200).send({ message: 'Success' });
     } catch (error) {
       return response.status(500).send({ message: 'Internal server error' });
     }
@@ -108,7 +108,7 @@ class PokemonController {
         .first();
 
       if (!pokemon) {
-        return response.status(404).send({ message: 'Pokemon not found.' });
+        return response.status(404).send({ message: 'Pokemon not found' });
       }
 
       await fs.unlinkSync(
@@ -117,7 +117,7 @@ class PokemonController {
 
       await connection('pokemons').where('id', id).delete();
 
-      return response.status(200).send({ message: 'Pokemon deleted' });
+      return response.status(200).send({ message: 'Success' });
     } catch (error) {
       return response.status(500).send({ message: 'Internal server error' });
     }

@@ -3,6 +3,20 @@ const path = require('path');
 const connection = require('../database/connection');
 
 class PokemonController {
+  async findById(request, response) {
+    try {
+      const { id } = request.params;
+
+      const pokemon = await connection
+        .select(['id', 'name', 'image_name', 'type_1', 'type_2'])
+        .where('id', id)
+        .from('pokemons');
+      return response.status(200).send(pokemon[0]);
+    } catch (error) {
+      return response.status(500).send({ message: 'Internal server error' });
+    }
+  }
+
   async findAll(request, response) {
     try {
       const { name } = request.query;

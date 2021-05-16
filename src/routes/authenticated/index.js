@@ -7,6 +7,9 @@ const cache = require('../../config/redis');
 
 const routes = express.Router();
 
+routes.get('/pokemons/:id', cache.route(), (request, response) =>
+  PokemonController.findById(request, response)
+);
 routes.get('/pokemons', cache.route(), (request, response) =>
   PokemonController.findAll(request, response)
 );

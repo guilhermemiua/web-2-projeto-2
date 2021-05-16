@@ -6,14 +6,18 @@ const cache = redis({
 });
 
 cache.invalidate = (name) => (req, res, next) => {
-  const routeName = name || req.url;
-
   if (!cache.connected) {
     next();
     return;
   }
 
-  cache.del(routeName, (err) => console.log(err));
+  if (name) {
+    cache.del(name, (err) => console.log(err));
+  }
+
+  if (req.url) {
+    cache.del(req.url, (err) => console.log(err));
+  }
 
   next();
 };

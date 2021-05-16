@@ -9,7 +9,7 @@
   "author": "guilhermemiua <guilhermemiua@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=production nodemon src/server",
+    "start": "NODE_ENV=production node src/server",
     "start:dev": "NODE_ENV=production nodemon src/server",
     "migration:make": "NODE_ENV=production knex --knexfile src/config/knexfile.js migrate:make",
     "migration:latest": "NODE_ENV=production knex --knexfile src/config/knexfile.js migrate:latest",

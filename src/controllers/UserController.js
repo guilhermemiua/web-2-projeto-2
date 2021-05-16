@@ -5,11 +5,11 @@ const connection = require('../database/connection');
 class UserController {
   async register(request, response) {
     try {
-      const { name, email, password } = request.body;
+      const { email, password } = request.body;
 
       // Verify if e-mail is already registered
       const existsEmail = await connection
-        .select('id', 'name', 'email')
+        .select('id', 'email')
         .where('email', email)
         .from('users')
         .first();
@@ -24,9 +24,8 @@ class UserController {
       const hashPassword = await bcrypt.hash(password, 10);
 
       const user = await connection
-        .returning(['id', 'name', 'email'])
+        .returning(['id', 'email'])
         .insert({
-          name,
           email,
           password: hashPassword,
           role: 'user',
@@ -44,7 +43,7 @@ class UserController {
       const { email, password } = request.body;
 
       const user = await connection
-        .select(['id', 'name', 'email', 'role', 'password'])
+        .select(['id', 'email', 'role', 'password'])
         .where('email', email)
         .from('users')
         .first();

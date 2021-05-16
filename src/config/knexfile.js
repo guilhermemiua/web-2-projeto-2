@@ -24,7 +24,8 @@ module.exports = {
     directory: path.join(__dirname, '../database/migrations'),
   },
   seeds: {
-    directory: 'seeds',
+    tableName: 'knex_seeds',
+    directory: path.join(__dirname, '../database/seeds'),
   },
   timezone: 'UTC',
 };

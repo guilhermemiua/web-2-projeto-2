@@ -16,12 +16,14 @@ routes.post(
   upload.single('file'),
   (request, response) => PokemonController.create(request, response)
 );
-routes.delete('/pokemons/:id', cache.invalidate(), (request, response) =>
-  PokemonController.delete(request, response)
+routes.delete(
+  '/pokemons/:id',
+  cache.invalidate('/pokemons'),
+  (request, response) => PokemonController.delete(request, response)
 );
 routes.put(
   '/pokemons/:id',
-  cache.invalidate(),
+  cache.invalidate('/pokemons'),
   upload.single('file'),
   (request, response) => PokemonController.update(request, response)
 );

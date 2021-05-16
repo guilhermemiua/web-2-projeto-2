@@ -111,14 +111,19 @@ class PokemonController {
         return response.status(404).send({ message: 'Pokemon not found' });
       }
 
-      await fs.unlinkSync(
-        path.join(__dirname, `../../uploads/${pokemon.image_name}`)
-      );
+      if (pokemon.image_name) {
+        await fs.unlinkSync(
+          path.join(__dirname, `../../uploads/${pokemon.image_name}`)
+        );
+      }
 
-      await connection('pokemons').where('id', id).delete();
+      const test = await connection('pokemons').where('id', id).delete();
+
+      console.log(test);
 
       return response.status(200).send({ message: 'Success' });
     } catch (error) {
+      console.log(error);
       return response.status(500).send({ message: 'Internal server error' });
     }
   }

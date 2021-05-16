@@ -1,6 +1,9 @@
 {
   "name": "web-2-projeto-2",
   "version": "1.0.0",
+  "engines": {
+    "node": "15.x"
+  },
   "main": "index.js",
   "repository": "git@github.com:guilhermemiua/web-2-projeto-2.git",
   "author": "guilhermemiua <guilhermemiua@gmail.com>",
